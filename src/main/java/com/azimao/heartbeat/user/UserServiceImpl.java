@@ -2,6 +2,7 @@ package com.azimao.heartbeat.user;
 
 import com.azimao.heartbeat.common.entity.CommonIdDTO;
 import com.azimao.heartbeat.common.entity.Wrapper;
+import com.azimao.heartbeat.mapper.UserMapper;
 import com.azimao.heartbeat.user.pojo.User;
 import com.azimao.heartbeat.user.pojo.UserQueryDTO;
 import com.azimao.heartbeat.user.pojo.UserSaveDTO;
@@ -50,7 +51,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Wrapper<Void> delete() {
-        return null;
+    public Wrapper<Void> delete(CommonIdDTO dto) {
+        userMapper.deleteById(dto.getId());
+        return Wrapper.success();
     }
+
 }

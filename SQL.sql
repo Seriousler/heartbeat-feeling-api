@@ -1,3 +1,6 @@
+CREATE
+DATABASE `heartbeat_feeling`;
+
 USE
 `heartbeat_feeling`;
 
@@ -7,7 +10,7 @@ CREATE TABLE `hf_user`
     `user_code`     varchar(255) DEFAULT NULL COMMENT '用户编码',
     `user_name`     varchar(255) DEFAULT NULL COMMENT '用户名称',
     `nickname`      varchar(255) DEFAULT NULL COMMENT '用户昵称',
-    `sex`           tinyint      DEFAULT NULL COMMENT '性别：1：男，2：女',
+    `gender`        tinyint      DEFAULT NULL COMMENT '性别：1：男，2：女，0：未知',
     `age`           int          DEFAULT NULL COMMENT '年龄',
     `birthday`      datetime     DEFAULT NULL COMMENT '出生日期',
     `marital`       varchar(255) DEFAULT NULL COMMENT '婚姻状况',

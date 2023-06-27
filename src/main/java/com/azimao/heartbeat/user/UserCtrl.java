@@ -41,9 +41,8 @@ public class UserCtrl {
     }
 
     @PostMapping("/delete")
-    public Wrapper<Void> delete() {
-        return userService.delete();
+    public Wrapper<Void> delete(@RequestBody CommonIdDTO dto) {
+        return userService.delete(dto);
     }
-
 
 }

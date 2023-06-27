@@ -1,4 +1,4 @@
-package com.azimao.heartbeat.user;
+package com.azimao.heartbeat.mapper;
 
 import com.azimao.heartbeat.user.pojo.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

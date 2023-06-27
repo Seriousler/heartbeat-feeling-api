@@ -21,5 +21,6 @@ public interface UserService {
 
     Wrapper<Void> save(UserSaveDTO dto);
 
-    Wrapper<Void> delete();
+    Wrapper<Void> delete(CommonIdDTO dto);
+
 }
