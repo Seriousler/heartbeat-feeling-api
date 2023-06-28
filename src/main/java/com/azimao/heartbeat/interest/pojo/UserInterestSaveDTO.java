@@ -1,5 +1,7 @@
 package com.azimao.heartbeat.interest.pojo;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,7 @@ import java.util.List;
  * @Date: 2023/6/28 14:00
  * @Version: 1.0
  */
+@Data
 public class UserInterestSaveDTO {
 
     /**
@@ -18,19 +21,4 @@ public class UserInterestSaveDTO {
      */
     private List<String> InterestList;
 
-    public String getOpenid() {
-        return openid;
-    }
-
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
-
-    public List<String> getInterestList() {
-        return InterestList;
-    }
-
-    public void setInterestList(List<String> interestList) {
-        InterestList = interestList;
-    }
 }

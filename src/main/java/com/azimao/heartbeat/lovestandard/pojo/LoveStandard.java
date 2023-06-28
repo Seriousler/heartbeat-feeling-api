@@ -3,12 +3,14 @@ package com.azimao.heartbeat.lovestandard.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 /**
  * @Author: 张隆
  * @Date: 2023/6/28 14:09
  * @Version: 1.0
  */
+@Data
 @TableName("hf_love_standard")
 public class LoveStandard {
 
@@ -26,27 +28,4 @@ public class LoveStandard {
      */
     private String loveStandard;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getLoveStandard() {
-        return loveStandard;
-    }
-
-    public void setLoveStandard(String loveStandard) {
-        this.loveStandard = loveStandard;
-    }
 }

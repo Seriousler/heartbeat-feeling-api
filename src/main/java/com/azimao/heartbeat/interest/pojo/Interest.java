@@ -3,6 +3,7 @@ package com.azimao.heartbeat.interest.pojo;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 /**
  * @Author: 张隆
@@ -13,6 +14,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * 兴趣爱好
  */
+@Data
 @TableName("hf_interest")
 public class Interest {
 
@@ -29,28 +31,4 @@ public class Interest {
      * 兴趣爱好
      */
     private String interest;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getInterest() {
-        return interest;
-    }
-
-    public void setInterest(String interest) {
-        this.interest = interest;
-    }
 }

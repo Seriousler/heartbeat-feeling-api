@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WxServiceImpl implements WxService {
 
-    static String appId = "wx208da25e78289c61";
+    static final String appId = "wx208da25e78289c61";
     static final String secret = "5c3b4db13173472e966eb55eabc8dde6";
 
     @Autowired

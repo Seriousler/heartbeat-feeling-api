@@ -1,10 +1,13 @@
 package com.azimao.heartbeat.wx.pojo;
 
+import lombok.Data;
+
 /**
  * @Author: 张隆
  * @Date: 2023/6/28 9:54
  * @Version: 1.0
  */
+@Data
 public class WxUser {
 
     /**
@@ -16,19 +19,4 @@ public class WxUser {
      */
     private String openid;
 
-    public String getUnionid() {
-        return unionid;
-    }
-
-    public void setUnionid(String unionid) {
-        this.unionid = unionid;
-    }
-
-    public String getOpenid() {
-        return openid;
-    }
-
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
 }

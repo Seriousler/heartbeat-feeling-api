@@ -15,4 +15,5 @@ public interface WxService {
     Wrapper<JSONObject> cgiBinToken();
 
     Wrapper<JSONObject> wxaBusinessGetuserphonenumber();
+
 }
