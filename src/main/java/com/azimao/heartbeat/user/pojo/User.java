@@ -4,8 +4,6 @@ import com.azimao.heartbeat.common.entity.CommonEntity;
 import com.azimao.heartbeat.user.enums.EducationEnum;
 import com.azimao.heartbeat.user.enums.IncomeEnum;
 import com.azimao.heartbeat.user.enums.MaritalEnum;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -22,10 +20,9 @@ import java.util.Date;
 public class User extends CommonEntity {
 
     /**
-     * 主键id
+     * 用户openid
      */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
+    private String openid;
     /**
      * 用户编码
      */
@@ -37,11 +34,15 @@ public class User extends CommonEntity {
     /**
      * 用户昵称
      */
-    private String nickname;
+    private String nickName;
     /**
-     * 性别：1：男，2：女
+     * 用户微信头像
      */
-    private Integer sex;
+    private String avatarUrl;
+    /**
+     * 性别：1：男，2：女，0：未知
+     */
+    private Integer gender;
     /**
      * 年龄
      */
@@ -64,6 +65,10 @@ public class User extends CommonEntity {
      */
     private IncomeEnum income;
     /**
+     * 国家
+     */
+    private String country;
+    /**
      * 省
      */
     private String province;
@@ -79,6 +84,10 @@ public class User extends CommonEntity {
      * 地址
      */
     private String address;
+    /**
+     * 语言
+     */
+    private String language;
     /**
      * 手机号码
      */

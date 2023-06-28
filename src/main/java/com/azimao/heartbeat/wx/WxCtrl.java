@@ -19,9 +19,6 @@ public class WxCtrl {
     @Autowired
     private WxService wxService;
 
-    /**
-     *
-     */
     @PostMapping("/sns/jscode2session")
     public Wrapper<JSONObject> snsJscode2session() {
         return wxService.snsJscode2session();
@@ -30,6 +27,11 @@ public class WxCtrl {
     @PostMapping("/cgi-bin/token")
     public Wrapper<JSONObject> cgiBinToken() {
         return wxService.cgiBinToken();
+    }
+
+    @PostMapping("/wxa/business/getuserphonenumber")
+    public Wrapper<JSONObject> wxaBusinessGetuserphonenumber() {
+        return wxService.wxaBusinessGetuserphonenumber();
     }
 
 }

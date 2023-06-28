@@ -1,4 +1,4 @@
-package com.azimao.heartbeat.userinterest.pojo;
+package com.azimao.heartbeat.interest.pojo;
 
 import com.azimao.heartbeat.common.entity.CommonEntity;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -21,9 +21,9 @@ public class UserInterest extends CommonEntity {
     @TableId(type = IdType.AUTO)
     private Integer id;
     /**
-     * 用户编码
+     * 用户openid
      */
-    private String userCode;
+    private String openid;
     /**
      * 兴趣爱好
      */

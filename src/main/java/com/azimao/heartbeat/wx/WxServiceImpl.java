@@ -43,4 +43,11 @@ public class WxServiceImpl implements WxService {
         return Wrapper.result(jsonObject);
     }
 
+    @Override
+    public Wrapper<JSONObject> wxaBusinessGetuserphonenumber() {
+        String access_token = "";
+        JSONObject jsonObject = wxClient.wxaBusinessGetuserphonenumber(access_token);
+        return Wrapper.result(jsonObject);
+    }
+
 }
