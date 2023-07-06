@@ -32,7 +32,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             return true;
         } catch (IOException | AccountNotFoundException e) {
             Account account = new Account();
-            account.setOpenid("0");
+            account.setOpenid("develop");
             account.setUserId(0);
             account.setUserCode("develop");
             account.setUserName("开发");
@@ -47,7 +47,6 @@ public class ApiInterceptor implements HandlerInterceptor {
             AccountThreadLocal.set(account);
             return true;
         }
-
     }
 
     @Override

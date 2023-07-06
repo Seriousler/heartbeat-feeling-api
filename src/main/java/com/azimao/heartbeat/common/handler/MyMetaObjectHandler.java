@@ -1,5 +1,7 @@
 package com.azimao.heartbeat.common.handler;
 
+import com.azimao.heartbeat.common.account.Account;
+import com.azimao.heartbeat.common.account.AccountThreadLocal;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
@@ -20,6 +22,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    Account account;
+
     /**
      * 插入时候的填充策略
      */
@@ -28,10 +32,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         logger.info("start insert fill");
         //添加时候自动填充 setFieldValByName三个参数为：映射类字段，填充值，原对象
         //setFieldValByName(String fieldName, Object fieldVal, MetaObject metaObject)
-        this.setFieldValByName("createBy", null, metaObject);
-        this.setFieldValByName("createTime", new Date(), metaObject);
-        this.setFieldValByName("updateBy", null, metaObject);
-        this.setFieldValByName("updateTime", new Date(), metaObject);
+        this.account = AccountThreadLocal.get();
+        if (this.account != null) {
+            this.setFieldValByName("createBy", account.getOpenid(), metaObject);
+            this.setFieldValByName("createTime", new Date(), metaObject);
+            this.setFieldValByName("updateBy", account.getOpenid(), metaObject);
+            this.setFieldValByName("updateTime", new Date(), metaObject);
+        }
     }
 
     /**
@@ -40,8 +47,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void updateFill(MetaObject metaObject) {
         logger.info("start update fill");
-        this.setFieldValByName("updateBy", null, metaObject);
-        this.setFieldValByName("updateTime", new Date(), metaObject);
+        this.account = AccountThreadLocal.get();
+        if (this.account != null) {
+            this.setFieldValByName("updateBy", account.getOpenid(), metaObject);
+            this.setFieldValByName("updateTime", new Date(), metaObject);
+        }
     }
 
 }

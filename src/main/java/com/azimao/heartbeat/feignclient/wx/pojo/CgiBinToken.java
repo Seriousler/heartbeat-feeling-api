@@ -1,10 +1,13 @@
 package com.azimao.heartbeat.feignclient.wx.pojo;
 
+import lombok.Data;
+
 /**
  * @Author: 张隆
  * @Date: 2023/6/27 11:17
  * @Version: 1.0
  */
+@Data
 public class CgiBinToken {
 
     /**
@@ -20,27 +23,4 @@ public class CgiBinToken {
      */
     private String secret;
 
-    public String getGrant_type() {
-        return grant_type;
-    }
-
-    public void setGrant_type(String grant_type) {
-        this.grant_type = grant_type;
-    }
-
-    public String getAppid() {
-        return appid;
-    }
-
-    public void setAppid(String appid) {
-        this.appid = appid;
-    }
-
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
 }

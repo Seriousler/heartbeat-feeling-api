@@ -2,9 +2,11 @@ package com.azimao.heartbeat.user;
 
 import com.azimao.heartbeat.common.entity.CommonIdDTO;
 import com.azimao.heartbeat.common.entity.Wrapper;
-import com.azimao.heartbeat.user.pojo.User;
-import com.azimao.heartbeat.user.pojo.UserQueryDTO;
-import com.azimao.heartbeat.user.pojo.UserSaveDTO;
+import com.azimao.heartbeat.user.pojo.interest.UserInterest;
+import com.azimao.heartbeat.user.pojo.interest.UserInterestSaveDTO;
+import com.azimao.heartbeat.user.pojo.user.User;
+import com.azimao.heartbeat.user.pojo.user.UserQueryDTO;
+import com.azimao.heartbeat.user.pojo.user.UserSaveDTO;
 
 import java.util.List;
 
@@ -22,5 +24,9 @@ public interface UserService {
     Wrapper<Void> save(UserSaveDTO dto);
 
     Wrapper<Void> delete(CommonIdDTO dto);
+
+    Wrapper<List<UserInterest>> interestList();
+
+    Wrapper<Void> interestSave(UserInterestSaveDTO dto);
 
 }

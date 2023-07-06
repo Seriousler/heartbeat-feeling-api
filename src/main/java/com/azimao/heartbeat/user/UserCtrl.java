@@ -2,9 +2,11 @@ package com.azimao.heartbeat.user;
 
 import com.azimao.heartbeat.common.entity.CommonIdDTO;
 import com.azimao.heartbeat.common.entity.Wrapper;
-import com.azimao.heartbeat.user.pojo.User;
-import com.azimao.heartbeat.user.pojo.UserQueryDTO;
-import com.azimao.heartbeat.user.pojo.UserSaveDTO;
+import com.azimao.heartbeat.user.pojo.interest.UserInterest;
+import com.azimao.heartbeat.user.pojo.interest.UserInterestSaveDTO;
+import com.azimao.heartbeat.user.pojo.user.User;
+import com.azimao.heartbeat.user.pojo.user.UserQueryDTO;
+import com.azimao.heartbeat.user.pojo.user.UserSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +45,16 @@ public class UserCtrl {
     @PostMapping("/delete")
     public Wrapper<Void> delete(@RequestBody CommonIdDTO dto) {
         return userService.delete(dto);
+    }
+
+    @PostMapping("/interest/list")
+    public Wrapper<List<UserInterest>> interestList() {
+        return userService.interestList();
+    }
+
+    @PostMapping("/interest/save")
+    public Wrapper<Void> interestSave(@RequestBody UserInterestSaveDTO dto) {
+        return userService.interestSave(dto);
     }
 
 }

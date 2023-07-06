@@ -1,4 +1,4 @@
-package com.azimao.heartbeat.interest.pojo;
+package com.azimao.heartbeat.user.pojo.interest;
 
 import lombok.Data;
 

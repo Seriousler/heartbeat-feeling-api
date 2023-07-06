@@ -2,8 +2,6 @@ package com.azimao.heartbeat.interest;
 
 import com.azimao.heartbeat.common.entity.Wrapper;
 import com.azimao.heartbeat.interest.pojo.Interest;
-import com.azimao.heartbeat.interest.pojo.UserInterest;
-import com.azimao.heartbeat.interest.pojo.UserInterestSaveDTO;
 
 import java.util.List;
 
@@ -16,7 +14,4 @@ public interface InterestService {
 
     Wrapper<List<Interest>> list();
 
-    Wrapper<List<UserInterest>> userList();
-
-    Wrapper<Void> userSave(UserInterestSaveDTO dto);
 }

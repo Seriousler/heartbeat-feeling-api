@@ -1,6 +1,6 @@
 package com.azimao.heartbeat.mapper;
 
-import com.azimao.heartbeat.user.pojo.User;
+import com.azimao.heartbeat.user.pojo.user.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

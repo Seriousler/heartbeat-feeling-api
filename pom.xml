@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>com.azimao</groupId>
-    <artifactId>heartbeat-api</artifactId>
+    <artifactId>heartbeat-feeling-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>heartbeat-feeling-api</name>
     <description>heartbeat</description>
