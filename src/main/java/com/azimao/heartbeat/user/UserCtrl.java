@@ -7,6 +7,7 @@ import com.azimao.heartbeat.user.pojo.interest.UserInterestSaveDTO;
 import com.azimao.heartbeat.user.pojo.user.User;
 import com.azimao.heartbeat.user.pojo.user.UserQueryDTO;
 import com.azimao.heartbeat.user.pojo.user.UserSaveDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import java.util.List;
  * @Date: 2023/6/21 15:28
  * @Version: 1.0
  */
+@Tag(name = "user", description = "用户")
 @RestController
 @RequestMapping("/user")
 public class UserCtrl {

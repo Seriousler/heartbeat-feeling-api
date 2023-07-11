@@ -2,6 +2,7 @@ package com.azimao.heartbeat.interest;
 
 import com.azimao.heartbeat.common.entity.Wrapper;
 import com.azimao.heartbeat.interest.pojo.Interest;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import java.util.List;
  * @Date: 2023/6/21 16:47
  * @Version: 1.0
  */
+@Tag(name = "interest", description = "兴趣爱好")
 @RestController
 @RequestMapping("/interest")
 public class InterestCtrl {

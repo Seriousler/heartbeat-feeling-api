@@ -2,6 +2,7 @@ package com.azimao.heartbeat.wx;
 
 import cn.hutool.json.JSONObject;
 import com.azimao.heartbeat.common.entity.Wrapper;
+import com.azimao.heartbeat.feignclient.wx.pojo.SnsJscode2session;
 
 /**
  * @Author: 张隆
@@ -10,7 +11,7 @@ import com.azimao.heartbeat.common.entity.Wrapper;
  */
 public interface WxService {
 
-    Wrapper<JSONObject> snsJscode2session();
+    Wrapper<JSONObject> snsJscode2session(SnsJscode2session dto);
 
     Wrapper<JSONObject> cgiBinToken();
 

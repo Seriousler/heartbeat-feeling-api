@@ -23,13 +23,11 @@ public class WxServiceImpl implements WxService {
     private WxClient wxClient;
 
     @Override
-    public Wrapper<JSONObject> snsJscode2session() {
-        SnsJscode2session snsJscode2session = new SnsJscode2session();
-        snsJscode2session.setAppid(appId);
-        snsJscode2session.setSecret(secret);
-        snsJscode2session.setJs_code("");
-        snsJscode2session.setGrant_type("authorization_code");
-        JSONObject jsonObject = wxClient.snsJscode2session(snsJscode2session);
+    public Wrapper<JSONObject> snsJscode2session(SnsJscode2session dto) {
+        dto.setAppid(appId);
+        dto.setSecret(secret);
+        dto.setGrant_type("authorization_code");
+        JSONObject jsonObject = wxClient.snsJscode2session(dto);
         return Wrapper.result(jsonObject);
     }
 

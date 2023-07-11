@@ -1,17 +1,16 @@
 package com.azimao.heartbeat.common.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-@ApiModel(value = "分页条件")
+@Schema(description = "分页条件")
 public class PageParamDTO {
 
-    @ApiModelProperty(value = "页码", required = true)
+    @Schema(description = "页码")
     private int pageNum = 1;
 
-    @ApiModelProperty(value = "分页大小", required = true)
+    @Schema(description = "分页大小")
     private int pageSize = 10;
 
 }

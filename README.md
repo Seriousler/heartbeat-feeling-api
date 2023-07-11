@@ -1,0 +1,1 @@
+http://localhost:8001/heartbeat-feeling-api/swagger-ui/index.html#/
