@@ -1,11 +1,13 @@
 package com.azimao.heartbeat.wx;
 
 import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.azimao.heartbeat.common.entity.Wrapper;
 import com.azimao.heartbeat.feignclient.wx.WxClient;
 import com.azimao.heartbeat.feignclient.wx.pojo.CgiBinToken;
 import com.azimao.heartbeat.feignclient.wx.pojo.SnsJscode2session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,7 +29,8 @@ public class WxServiceImpl implements WxService {
         dto.setAppid(appId);
         dto.setSecret(secret);
         dto.setGrant_type("authorization_code");
-        JSONObject jsonObject = wxClient.snsJscode2session(dto);
+        ResponseEntity<String> responseEntity = wxClient.snsJscode2session(dto);
+        JSONObject jsonObject = JSONUtil.toBean(responseEntity.toString(), JSONObject.class);
         return Wrapper.result(jsonObject);
     }
 
@@ -37,14 +40,16 @@ public class WxServiceImpl implements WxService {
         cgiBinToken.setGrant_type("client_credential");
         cgiBinToken.setAppid(appId);
         cgiBinToken.setSecret(secret);
-        JSONObject jsonObject = wxClient.cgiBinToken(cgiBinToken);
+        ResponseEntity<String> responseEntity = wxClient.cgiBinToken(cgiBinToken);
+        JSONObject jsonObject = JSONUtil.toBean(responseEntity.toString(), JSONObject.class);
         return Wrapper.result(jsonObject);
     }
 
     @Override
     public Wrapper<JSONObject> wxaBusinessGetuserphonenumber() {
         String access_token = "";
-        JSONObject jsonObject = wxClient.wxaBusinessGetuserphonenumber(access_token);
+        ResponseEntity<String> responseEntity = wxClient.wxaBusinessGetuserphonenumber(access_token);
+        JSONObject jsonObject = JSONUtil.toBean(responseEntity.toString(), JSONObject.class);
         return Wrapper.result(jsonObject);
     }
 

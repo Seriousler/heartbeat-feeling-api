@@ -1,6 +1,5 @@
 package com.azimao.heartbeat.user;
 
-import com.azimao.heartbeat.common.entity.CommonIdDTO;
 import com.azimao.heartbeat.common.entity.Wrapper;
 import com.azimao.heartbeat.mapper.UserInterestMapper;
 import com.azimao.heartbeat.mapper.UserMapper;
@@ -10,6 +9,7 @@ import com.azimao.heartbeat.user.pojo.user.User;
 import com.azimao.heartbeat.user.pojo.user.UserQueryDTO;
 import com.azimao.heartbeat.user.pojo.user.UserSaveDTO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +40,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Wrapper<User> detail(CommonIdDTO dto) {
-        User user = userMapper.selectById(dto.getId());
+    public Wrapper<User> detail(UserQueryDTO dto) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("openid", dto.getOpenid());
+        User user = userMapper.selectOne(queryWrapper);
         return Wrapper.result(user);
     }
 
     @Override
     public Wrapper<Void> save(UserSaveDTO dto) {
-        if (dto.getUserCode() != null) {
-            userMapper.updateById(dto);
+        if (dto.getOpenid() != null) {
+            UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("openid", dto.getOpenid());
+            userMapper.update(null, updateWrapper);
         } else {
             userMapper.insert(dto);
         }
@@ -56,8 +60,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Wrapper<Void> delete(CommonIdDTO dto) {
-        userMapper.deleteById(dto.getId());
+    public Wrapper<Void> delete(UserQueryDTO dto) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("openid", dto.getOpenid());
+        userMapper.delete(queryWrapper);
         return Wrapper.success();
     }
 

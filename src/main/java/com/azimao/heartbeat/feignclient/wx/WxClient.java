@@ -3,10 +3,11 @@ package com.azimao.heartbeat.feignclient.wx;
 import cn.hutool.json.JSONObject;
 import com.azimao.heartbeat.feignclient.wx.pojo.CgiBinToken;
 import com.azimao.heartbeat.feignclient.wx.pojo.SnsJscode2session;
+import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author: 张隆
@@ -17,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface WxClient {
 
     @GetMapping("/sns/jscode2session")
-    JSONObject snsJscode2session(@RequestBody SnsJscode2session snsJscode2session);
+    ResponseEntity<String> snsJscode2session(@Valid @SpringQueryMap SnsJscode2session snsJscode2session);
 
     @GetMapping("/cgi-bin/token")
-    JSONObject cgiBinToken(@RequestBody CgiBinToken cgiBinToken);
+    ResponseEntity<String> cgiBinToken(@Valid @SpringQueryMap CgiBinToken cgiBinToken);
 
     @PostMapping("/wxa/business/getuserphonenumber")
-    JSONObject wxaBusinessGetuserphonenumber(String access_token);
+    ResponseEntity<String> wxaBusinessGetuserphonenumber(String access_token);
 
 }

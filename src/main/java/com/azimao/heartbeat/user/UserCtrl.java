@@ -1,6 +1,5 @@
 package com.azimao.heartbeat.user;
 
-import com.azimao.heartbeat.common.entity.CommonIdDTO;
 import com.azimao.heartbeat.common.entity.Wrapper;
 import com.azimao.heartbeat.user.pojo.interest.UserInterest;
 import com.azimao.heartbeat.user.pojo.interest.UserInterestSaveDTO;
@@ -35,7 +34,7 @@ public class UserCtrl {
     }
 
     @PostMapping("/detail")
-    public Wrapper<User> detail(@RequestBody CommonIdDTO dto) {
+    public Wrapper<User> detail(@RequestBody UserQueryDTO dto) {
         return userService.detail(dto);
     }
 
@@ -45,7 +44,7 @@ public class UserCtrl {
     }
 
     @PostMapping("/delete")
-    public Wrapper<Void> delete(@RequestBody CommonIdDTO dto) {
+    public Wrapper<Void> delete(@RequestBody UserQueryDTO dto) {
         return userService.delete(dto);
     }
 

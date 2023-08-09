@@ -14,7 +14,7 @@ public class CommonEntity {
 
     @Schema(description = "创建者Id")
     @TableField(value = "CREATE_BY", fill = FieldFill.INSERT)
-    private Integer createBy;
+    private String createBy;
 
     @Schema(description = "创建时间")
     @TableField(value = "CREATE_TIME", fill = FieldFill.INSERT)
@@ -23,7 +23,7 @@ public class CommonEntity {
 
     @Schema(description = "最后修改者Id")
     @TableField(value = "UPDATE_BY", fill = FieldFill.INSERT_UPDATE)
-    private Integer updateBy;
+    private String updateBy;
 
     @Schema(description = "最后修改时间")
     @TableField(value = "UPDATE_TIME", fill = FieldFill.INSERT_UPDATE)
