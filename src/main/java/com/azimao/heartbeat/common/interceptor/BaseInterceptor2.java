@@ -2,11 +2,10 @@ package com.azimao.heartbeat.common.interceptor;
 
 import com.azimao.heartbeat.common.account.Account;
 import com.azimao.heartbeat.common.account.AccountThreadLocal;
-import com.azimao.heartbeat.common.util.JwtUtils;
+import com.azimao.heartbeat.common.account.AccountUtils;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,8 +13,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.security.auth.login.AccountNotFoundException;
+import java.io.IOException;
+
 @Component
-public class BaseInterceptor implements HandlerInterceptor {
+public class BaseInterceptor2 implements HandlerInterceptor {
 
     public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -32,35 +34,28 @@ public class BaseInterceptor implements HandlerInterceptor {
             throws Exception {
 
         try {
-            logger.info("BaseInterceptor....");
-            String jwtToken = request.getHeader("jwtToken");
-            if (StringUtils.isBlank(jwtToken)) {
-                return false;
-            }
-            String openid = JwtUtils.getOpenidByJwtToken(jwtToken);
-            Account account = new Account();
-            account.setOpenid(openid);
+            Account account = AccountUtils.getByHeader(request);
             AccountThreadLocal.set(account);
             if (logger.isDebugEnabled()) {
-                logger.debug("获取的登录信息:用户openid[{}]", account.getOpenid());
+                logger.debug("从网关获取的登录信息:用户编码[{}],是否管理员[{}],角色ID[{}],角色编码[{}],角色名称[{}]", account.getUserCode(),
+                        account.getIsManager(), account.getRoleIds(), account.getRoleCodes(), account.getRoleNames());
             }
             return true;
-        } catch (Exception e) {
+        } catch (IOException | AccountNotFoundException e) {
             // 暂时设置默认的登录信息,用于controller获取登录信息的开发需求
             if ("true".equals(devModel)) {
                 Account account = new Account();
-                account.setOpenid("develop");
-                account.setUserId(0);
+                // 标签业务员创建申请
+                account.setUserId(1017);
                 account.setUserCode("develop");
-                account.setUserName("开发");
-                account.setNickName("阿兹猫");
-                account.setOrgId(0);
-                account.setOrgCode("development");
-                account.setOrgName("研发部");
-                account.setRoleIds("0");
-                account.setRoleCodes("000");
-                account.setRoleNames("角色0");
-                account.setIsManager(0);
+                account.setUserName("开发者");
+                account.setRoleIds("1,2,3");
+                account.setRoleCodes("001,002,003");
+                account.setRoleNames("角色1,角色2,角色3");
+                account.setOrgId(3);
+                account.setOrgCode("bdp");
+                account.setOrgName("大数据");
+                account.setIsManager(1);
                 AccountThreadLocal.set(account);
                 return true;
             }

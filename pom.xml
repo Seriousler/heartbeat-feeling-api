@@ -29,7 +29,6 @@
         <swagger.version>1.5.22</swagger.version>
         <nacos.version>2022.0.0.0-RC1</nacos.version>
         <openfeign.version>4.0.1</openfeign.version>
-        <fastjson.version>1.2.83</fastjson.version>
         <hutool.version>5.7.21</hutool.version>
         <easyexcel.version>3.0.5</easyexcel.version>
         <torna.version>1.0.15</torna.version>
