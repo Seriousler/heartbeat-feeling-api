@@ -1,46 +1,35 @@
 package com.azimao.heartbeat.common.interceptor;
 
-import com.azimao.heartbeat.common.account.Account;
 import com.azimao.heartbeat.common.account.AccountThreadLocal;
-import com.azimao.heartbeat.common.util.JwtUtils;
-import jakarta.annotation.PostConstruct;
+import com.azimao.heartbeat.common.account.Account;
+import com.azimao.heartbeat.common.account.AccountUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.security.auth.login.AccountNotFoundException;
+import java.io.IOException;
+
 @Component
-public class ApiInterceptor implements HandlerInterceptor {
+public class ApiInterceptor2 implements HandlerInterceptor {
 
     public final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @PostConstruct
-    public void init() {
-        logger.info("---------------------拦截器初始化-----------------------------------ApiInterceptor");
-    }
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-
         try {
-            logger.info("ApiInterceptor....");
-            String jwtToken = request.getHeader("jwtToken");
-            if (StringUtils.isBlank(jwtToken)) {
-                return false;
-            }
-            String openid = JwtUtils.getOpenidByJwtToken(jwtToken);
-            Account account = new Account();
-            account.setOpenid(openid);
+            Account account = AccountUtils.getByHeader(request);
             AccountThreadLocal.set(account);
             if (logger.isDebugEnabled()) {
-                logger.debug("获取的登录信息:用户openid[{}]", account.getOpenid());
+                logger.debug("获取的登录信息:用户编码[{}],是否管理员[{}],角色ID[{}],角色编码[{}],角色名称[{}]", account.getUserCode(),
+                        account.getIsManager(), account.getRoleIds(), account.getRoleCodes(), account.getRoleNames());
             }
             return true;
-        } catch (Exception e) {
+        } catch (IOException | AccountNotFoundException e) {
             Account account = new Account();
             account.setOpenid("develop");
             account.setUserId(0);
