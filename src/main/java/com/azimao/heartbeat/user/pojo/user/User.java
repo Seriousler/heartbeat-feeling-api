@@ -24,6 +24,10 @@ public class User extends CommonEntity {
      */
     private String openid;
     /**
+     * 用户unionid
+     */
+    private String unionid;
+    /**
      * 用户编码
      */
     private String userCode;

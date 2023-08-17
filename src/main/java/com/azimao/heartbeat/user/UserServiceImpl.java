@@ -49,7 +49,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Wrapper<Void> save(UserSaveDTO dto) {
-        if (dto.getOpenid() != null) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("openid", dto.getOpenid());
+        User user = userMapper.selectOne(queryWrapper);
+        if (user != null) {
             UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
             updateWrapper.eq("openid", dto.getOpenid());
             userMapper.update(null, updateWrapper);
@@ -68,9 +71,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Wrapper<List<UserInterest>> interestList() {
+    public Wrapper<List<UserInterest>> interestList(UserQueryDTO dto) {
         QueryWrapper<UserInterest> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("openid", null);
+        queryWrapper.eq("openid", dto.getOpenid());
         List<UserInterest> userInterestList = userInterestMapper.selectList(queryWrapper);
         return Wrapper.list(userInterestList);
     }

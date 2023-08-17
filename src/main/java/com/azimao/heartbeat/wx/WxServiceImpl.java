@@ -7,6 +7,8 @@ import com.azimao.heartbeat.common.util.JwtUtils;
 import com.azimao.heartbeat.feignclient.wx.WxClient;
 import com.azimao.heartbeat.feignclient.wx.pojo.CgiBinToken;
 import com.azimao.heartbeat.feignclient.wx.pojo.SnsJscode2session;
+import com.azimao.heartbeat.user.UserService;
+import com.azimao.heartbeat.user.pojo.user.UserSaveDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,8 @@ public class WxServiceImpl implements WxService {
 
     @Autowired
     private WxClient wxClient;
+    @Autowired
+    private UserService userService;
 
     @Override
     public Wrapper<JSONObject> snsJscode2session(SnsJscode2session dto) {
@@ -38,7 +42,16 @@ public class WxServiceImpl implements WxService {
         if (!"0".equals(jsonObject.get("errcode"))) {
             return Wrapper.error("获取失败");
         }
-        String jwtToken = JwtUtils.getJwtToken(String.valueOf(jsonObject.get("openid")));
+        String sessionKey = String.valueOf(jsonObject.get("session_key"));
+        String unionid = String.valueOf(jsonObject.get("unionid"));
+        String openid = String.valueOf(jsonObject.get("openid"));
+        String jwtToken = JwtUtils.getJwtToken(openid, sessionKey);
+
+        UserSaveDTO userSaveDTO = new UserSaveDTO();
+        userSaveDTO.setOpenid(openid);
+        userSaveDTO.setUnionid(unionid);
+        userService.save(userSaveDTO);
+
         Map<String, String> hashMap = new HashMap<>();
         hashMap.put("jwtToken", jwtToken);
         JSONObject jsonObject1 = new JSONObject(hashMap);

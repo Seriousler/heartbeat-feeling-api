@@ -18,8 +18,8 @@ public class JwtUtils {
     //设置token密钥
     public static final String APP_SECRET = "heartbeat-feeling-api";
 
-    public static String getJwtToken(String openid) {
-        logger.info("openid：{}", openid);
+    public static String getJwtToken(String openid, String sessionKey) {
+        logger.info("openid：{}，sessionKey：{}", openid, sessionKey);
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
@@ -27,6 +27,7 @@ public class JwtUtils {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
                 .claim("openid", openid)
+                .claim("sessionKey", sessionKey)
                 .signWith(SignatureAlgorithm.HS256, APP_SECRET)
                 .compact();
     }

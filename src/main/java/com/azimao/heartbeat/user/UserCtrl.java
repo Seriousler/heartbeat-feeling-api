@@ -49,8 +49,8 @@ public class UserCtrl {
     }
 
     @PostMapping("/interest/list")
-    public Wrapper<List<UserInterest>> interestList() {
-        return userService.interestList();
+    public Wrapper<List<UserInterest>> interestList(@RequestBody UserQueryDTO dto) {
+        return userService.interestList(dto);
     }
 
     @PostMapping("/interest/save")

@@ -24,7 +24,7 @@ public interface UserService {
 
     Wrapper<Void> delete(UserQueryDTO dto);
 
-    Wrapper<List<UserInterest>> interestList();
+    Wrapper<List<UserInterest>> interestList(UserQueryDTO dto);
 
     Wrapper<Void> interestSave(UserInterestSaveDTO dto);
 

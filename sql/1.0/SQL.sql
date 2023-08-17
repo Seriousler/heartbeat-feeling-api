@@ -7,6 +7,7 @@ USE
 CREATE TABLE `hf_user`
 (
     `openid`        varchar(255) NOT NULL COMMENT '用户openid',
+    `unionid`       varchar(255) NOT NULL COMMENT '用户unionid',
     `user_code`     varchar(255) DEFAULT NULL COMMENT '用户编码',
     `user_name`     varchar(255) DEFAULT NULL COMMENT '用户名称',
     `nick_name`     varchar(255) DEFAULT NULL COMMENT '用户昵称',
